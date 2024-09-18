@@ -1,0 +1,16 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+      routes:
+      - id: customer_service
+        # "lb" es para habilitar el blanceo de carga por si hubiera más de una instancia registrada en Eureka de este microservicio llamado "businessdomain-customer"
+        uri: lb://businessdomain-customer
+        predicates:
+        - Path=/customer/**

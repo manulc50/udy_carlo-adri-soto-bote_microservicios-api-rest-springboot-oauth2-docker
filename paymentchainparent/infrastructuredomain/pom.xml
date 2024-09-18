@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.paymentchain</groupId>
+		<artifactId>paymentchainparent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.paymentchain.infraestructuradomain</groupId>
+	<artifactId>infrastructuredomain</artifactId>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>eurekaserver</module>
+		<module>adminserver</module>
+		<module>configserver</module>
+		<module>apigateway</module>
+	</modules>
+
+	<properties>
+		<spring-cloud-dependencies.version>2021.0.4</spring-cloud-dependencies.version>
+	</properties>
+
+	<!-- Allows consolidate and centralized managment of dependency version without adding dependencies
+       that are inherit by all children, it is usefull when we have a set of projects that inherit a common parent -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
